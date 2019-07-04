@@ -1,5 +1,8 @@
 package web
 
+// generate embedded assets
+//go:generate make assets.go
+
 import (
 	"bytes"
 	"fmt"
