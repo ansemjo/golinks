@@ -1,15 +1,30 @@
-FROM alpine
+# ----- Use Go base container -----
+FROM golang:alpine
 
-ENV GOPATH /go
-COPY . /go/src/github.com/kellegous/go
-RUN apk update \
-  && apk add go git musl-dev \
-  && go get github.com/kellegous/go \
-  && apk del go git musl-dev \
-  && rm -rf /var/cache/apk/* \
-  && rm -rf /go/src /go/pkg \
-  && mkdir /data
+# copy sources
+WORKDIR /build
+COPY ./ ./
 
+# install necessary tools
+RUN apk add --no-cache git upx
+
+# compile static & stripped binary
+RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o go
+
+# compress binary
+RUN upx ./go
+
+
+# ----- create minimal final image -----
+FROM scratch
+
+# copy binary
+COPY --from=0 /build/go /go
+
+# default address and data dir
 EXPOSE 8067
+VOLUME /data
 
-CMD ["/go/bin/go", "--data=/data"]
+# entrypoint command
+ENTRYPOINT ["/go"]
+CMD ["-data", "/data"]
