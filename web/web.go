@@ -79,9 +79,18 @@ func getLinks(ctx *context.Context, w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func getLinksJSON(ctx *context.Context, w http.ResponseWriter, r *http.Request) {
+	rts, err := ctx.GetAll()
+	if err != nil {
+		writeJSONBackendError(w, err)
+		return
+	}
+	writeJSON(w, rts, http.StatusOK)
+}
+
 // ListenAndServe sets up all web routes, binds the port and handles incoming
 // web requests.
-func ListenAndServe(addr string, admin bool, version string, ctx *context.Context) error {
+func ListenAndServe(addr string, version string, ctx *context.Context) error {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/api/url/", func(w http.ResponseWriter, r *http.Request) {
@@ -107,6 +116,9 @@ func ListenAndServe(addr string, admin bool, version string, ctx *context.Contex
 	mux.HandleFunc("/links/", func(w http.ResponseWriter, r *http.Request) {
 		getLinks(ctx, w, r)
 	})
+	mux.HandleFunc("/links/json/", func(w http.ResponseWriter, r *http.Request) {
+		getLinksJSON(ctx, w, r)
+	})
 	mux.HandleFunc("/s/", func(w http.ResponseWriter, r *http.Request) {
 		serveAsset(w, r, r.URL.Path[len("/s/"):])
 	})
@@ -116,11 +128,6 @@ func ListenAndServe(addr string, admin bool, version string, ctx *context.Contex
 	mux.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "👍")
 	})
-
-	// TODO(knorton): Remove the admin handler.
-	if admin {
-		mux.Handle("/admin/", &adminHandler{ctx})
-	}
 
 	return http.ListenAndServe(addr, mux)
 }
