@@ -1,5 +1,3 @@
-CPP = /usr/bin/cpp -P -undef -Wundef -std=c99 -nostdinc -Wtrigraphs -fdollars-in-identifiers -C -Wno-invalid-pp-token
-
 SRC = $(shell find web/assets -maxdepth 1 -type f)
 DST = $(patsubst %.sass,%.css,$(patsubst %.ts,%.js,$(subst web/assets,.build/assets,$(SRC))))
 
