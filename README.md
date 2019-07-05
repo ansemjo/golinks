@@ -37,6 +37,16 @@ listen to requests on the port `8067`. Both of these, however, are easily config
 using the `--data=/path/to/data` and `--addr=:80` command line flags.
 
 
+## Container
+
+An automated container build is available on
+[DockerHub](https://hub.docker.com/r/ansemjo/golinks/builds).
+Deploy the image with:
+
+```
+docker run -d -p 8067:8067 -v /path/to/data:/data ansemjo/golinks
+```
+
 ## DNS Setup
 
 To get the most benefit from the service, you should setup a DNS entry on your
