@@ -1,4 +1,4 @@
-module github.com/kellegous/go
+module github.com/ansemjo/golinks
 
 go 1.12
 

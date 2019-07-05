@@ -86,7 +86,7 @@ func editHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "edit.html", size: 484, mode: os.FileMode(420), modTime: time.Unix(1562271691, 0)}
+	info := bindataFileInfo{name: "edit.html", size: 484, mode: os.FileMode(420), modTime: time.Unix(1562350839, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -106,7 +106,7 @@ func editJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "edit.js", size: 2964, mode: os.FileMode(420), modTime: time.Unix(1562271691, 0)}
+	info := bindataFileInfo{name: "edit.js", size: 2964, mode: os.FileMode(420), modTime: time.Unix(1562350839, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -126,7 +126,7 @@ func linksHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "links.html", size: 559, mode: os.FileMode(420), modTime: time.Unix(1562271691, 0)}
+	info := bindataFileInfo{name: "links.html", size: 559, mode: os.FileMode(420), modTime: time.Unix(1562350839, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -146,7 +146,7 @@ func styleCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "style.css", size: 1705, mode: os.FileMode(420), modTime: time.Unix(1562271691, 0)}
+	info := bindataFileInfo{name: "style.css", size: 1705, mode: os.FileMode(420), modTime: time.Unix(1562350839, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }

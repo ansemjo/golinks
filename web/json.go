@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/kellegous/go/context"
+	"github.com/ansemjo/golinks/context"
 )
 
 // Used as an API response, this is a route with its associated shortcut name.

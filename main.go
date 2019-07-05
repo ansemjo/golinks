@@ -4,8 +4,8 @@ import (
 	"flag"
 	"log"
 
-	"github.com/kellegous/go/context"
-	"github.com/kellegous/go/web"
+	"github.com/ansemjo/golinks/context"
+	"github.com/ansemjo/golinks/web"
 )
 
 var version string
